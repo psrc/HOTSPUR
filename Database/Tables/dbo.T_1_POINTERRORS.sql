@@ -1,0 +1,24 @@
+CREATE TABLE [dbo].[T_1_POINTERRORS]
+(
+[ObjectID] [int] NOT NULL,
+[OriginClassID] [int] NOT NULL,
+[OriginID] [int] NULL,
+[DestClassID] [int] NULL,
+[DestID] [int] NULL,
+[TopoRuleType] [int] NOT NULL,
+[TopoRuleID] [int] NOT NULL,
+[IsException] [int] NOT NULL,
+[Shape] [sys].[geometry] NULL,
+[GDB_GEOMATTR_DATA] [varbinary] (max) NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[T_1_POINTERRORS] ADD CONSTRAINT [g21_ck] CHECK (([Shape].[STSrid]=(2285)))
+GO
+ALTER TABLE [dbo].[T_1_POINTERRORS] ADD CONSTRAINT [R50_pk] PRIMARY KEY CLUSTERED ([ObjectID]) WITH (FILLFACTOR=100) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [GDB_123_IsExcept] ON [dbo].[T_1_POINTERRORS] ([IsException]) WITH (FILLFACTOR=100) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [G123multi] ON [dbo].[T_1_POINTERRORS] ([TopoRuleID], [TopoRuleType], [OriginClassID], [OriginID], [DestClassID], [DestID]) WITH (FILLFACTOR=100) ON [PRIMARY]
+GO
+CREATE SPATIAL INDEX [S21_idx] ON [dbo].[T_1_POINTERRORS] ([Shape]) USING geometry_auto_grid  WITH (BOUNDING_BOX = (-117104300, -99539600, 120385100, 101712900), CELLS_PER_OBJECT = 16) ON [PRIMARY]
+GO

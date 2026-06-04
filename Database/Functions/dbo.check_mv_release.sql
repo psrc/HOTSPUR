@@ -1,0 +1,12 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE FUNCTION [dbo].[check_mv_release] () RETURNS VARCHAR(20)
+BEGIN
+  RETURN 'DEFAULT 1.0'
+END
+
+GO
+GRANT EXECUTE ON  [dbo].[check_mv_release] TO [public]
+GO

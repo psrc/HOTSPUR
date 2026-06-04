@@ -1,0 +1,14 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROCEDURE [dbo].[next_globalid]
+@guid NVARCHAR(38) OUTPUT
+AS SET NOCOUNT ON
+BEGIN
+SELECT @guid =  '{' + CAST (NEWID() AS NVARCHAR(38)) + '}'
+END
+
+GO
+GRANT EXECUTE ON  [dbo].[next_globalid] TO [public]
+GO

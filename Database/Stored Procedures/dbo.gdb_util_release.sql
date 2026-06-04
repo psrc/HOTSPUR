@@ -1,0 +1,8 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROCEDURE [dbo].[gdb_util_release] AS SELECT 7
+GO
+GRANT EXECUTE ON  [dbo].[gdb_util_release] TO [public]
+GO

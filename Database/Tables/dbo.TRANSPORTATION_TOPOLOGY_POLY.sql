@@ -1,0 +1,20 @@
+CREATE TABLE [dbo].[TRANSPORTATION_TOPOLOGY_POLY]
+(
+[OID] [int] NOT NULL,
+[OriginObjectClassName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[OriginObjectID] [int] NULL,
+[DestinationObjectClassName] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DestinationObjectID] [int] NULL,
+[RuleType] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[RuleDescription] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[isException] [int] NOT NULL,
+[Shape] [sys].[geometry] NULL,
+[GDB_GEOMATTR_DATA] [varbinary] (max) NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[TRANSPORTATION_TOPOLOGY_POLY] ADD CONSTRAINT [g6_ck] CHECK (([SHAPE].[STSrid]=(2285)))
+GO
+ALTER TABLE [dbo].[TRANSPORTATION_TOPOLOGY_POLY] ADD CONSTRAINT [R35_pk] PRIMARY KEY CLUSTERED ([OID]) WITH (FILLFACTOR=100) ON [PRIMARY]
+GO
+CREATE SPATIAL INDEX [S6_idx] ON [dbo].[TRANSPORTATION_TOPOLOGY_POLY] ([Shape]) USING geometry_auto_grid  WITH (BOUNDING_BOX = (700000, -355000, 529835250978881.75, 529835249923881.75), CELLS_PER_OBJECT = 16) ON [PRIMARY]
+GO

@@ -1,0 +1,12 @@
+CREATE TABLE [dbo].[TBLMODELSCENARIO]
+(
+[OBJECTID] [int] NOT NULL,
+[Scenario_ID] [int] NOT NULL,
+[Title] [nvarchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[Description] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[Date_Created] [datetime2] NOT NULL,
+[NodeOffset] [int] NULL
+) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [R27_SDE_ROWID_UK] ON [dbo].[TBLMODELSCENARIO] ([OBJECTID]) WITH (FILLFACTOR=100) ON [PRIMARY]
+GO

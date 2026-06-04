@@ -1,0 +1,20 @@
+CREATE TABLE [dbo].[SCREENLINES]
+(
+[OBJECTID] [int] NOT NULL,
+[ScreenLineID] [int] NOT NULL,
+[Name] [nvarchar] (35) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[Description] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+[InServiceDate] [datetime2] NOT NULL,
+[OutServiceDate] [datetime2] NOT NULL,
+[dateLastUpdated] [datetime2] NOT NULL,
+[Enabled] [smallint] NULL,
+[Shape] [sys].[geometry] NULL,
+[GDB_GEOMATTR_DATA] [varbinary] (max) NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[SCREENLINES] ADD CONSTRAINT [g14_ck] CHECK (([SHAPE].[STSrid]=(2285)))
+GO
+ALTER TABLE [dbo].[SCREENLINES] ADD CONSTRAINT [R43_pk] PRIMARY KEY CLUSTERED ([OBJECTID]) WITH (FILLFACTOR=100) ON [PRIMARY]
+GO
+CREATE SPATIAL INDEX [S14_idx] ON [dbo].[SCREENLINES] ([Shape]) USING geometry_auto_grid  WITH (BOUNDING_BOX = (1155484.2352941176, -86565.2352941177, 1510613.1176470588, 479203.4705882353), CELLS_PER_OBJECT = 16) ON [PRIMARY]
+GO

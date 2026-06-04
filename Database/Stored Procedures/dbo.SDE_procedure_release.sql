@@ -1,0 +1,8 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROCEDURE [dbo].[SDE_procedure_release] AS SELECT 12000353 FROM dbo.SDE_version
+GO
+GRANT EXECUTE ON  [dbo].[SDE_procedure_release] TO [public]
+GO
