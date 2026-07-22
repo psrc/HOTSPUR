@@ -1,0 +1,5 @@
+IF NOT EXISTS (SELECT * FROM master.dbo.syslogins WHERE loginname = N'PSRC\JQuick')
+CREATE LOGIN [PSRC\JQuick] FROM WINDOWS
+GO
+CREATE USER [PSRC\JQuick] FOR LOGIN [PSRC\JQuick]
+GO
